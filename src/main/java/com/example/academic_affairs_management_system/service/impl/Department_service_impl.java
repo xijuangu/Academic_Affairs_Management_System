@@ -16,4 +16,9 @@ public class Department_service_impl implements Department_service {
     public void insert_department(Department department) {
         mapper.insert_department(department);
     }
+
+    @Override
+    public Department get_department(int dept_id){
+        mapper.get_department(dept_id);
+    }
 }

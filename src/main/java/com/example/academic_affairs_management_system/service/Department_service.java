@@ -6,4 +6,7 @@ public interface Department_service {
 
     public void insert_department(Department department);
 
+    public Department get_department(int dept_id);
+
+
 }
