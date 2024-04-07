@@ -8,5 +8,4 @@ public interface Department_service {
 
     public Department get_department(int dept_id);
 
-
 }

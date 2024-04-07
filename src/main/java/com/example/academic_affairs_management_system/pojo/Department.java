@@ -21,25 +21,35 @@ public class Department {
     @Column(length = 20)
     String phone_code;
 
-    public void setDept_id(int id)
-    {
-        this.dept_id=id;
+    public int getDept_id() {
+        return dept_id;
     }
 
-    public void setDept_name(String name)
-    {
-        this.dept_name=name;
+    public String getDept_name() {
+        return dept_name;
     }
 
-    public void setAddress(String address)
-    {
-        this.address=address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPhone_code(String phone_code)
-    {
-        this.phone_code=phone_code;
+    public String getPhone_code() {
+        return phone_code;
     }
 
+    public void setDept_id(int id) {
+        this.dept_id = id;
+    }
 
+    public void setDept_name(String name) {
+        this.dept_name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
+    }
 }
