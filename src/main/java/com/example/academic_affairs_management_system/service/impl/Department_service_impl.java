@@ -23,4 +23,15 @@ public class Department_service_impl implements Department_service {
     public Department get_department(int dept_id){
         return mapper.get_department(dept_id);
     }
+
+    @Override
+    public void update_department(Department department) {
+        mapper.update_department(department);
+    }
+
+    @Override
+    public void delete_department(int dept_id) {
+        mapper.delete_department(dept_id);
+    }
+
 }

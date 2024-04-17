@@ -63,4 +63,64 @@ public class Department_controller {
     }
 
 
+    @PostMapping("/update")
+    public ResponseEntity<?> update_department(@RequestBody Map<String, String> requestMap) {
+        String dept_id = requestMap.get("dept_id");
+        if (dept_id == null) {
+            return new ResponseEntity<>("Department ID is required for update.", HttpStatus.BAD_REQUEST);
+        }
+
+        int ID;
+        try {
+            ID = Integer.parseInt(dept_id);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>("Invalid format for dept_id", HttpStatus.BAD_REQUEST);
+        }
+
+        Department existingDepartment = department_service.get_department(ID);
+        if (existingDepartment == null) {
+            return new ResponseEntity<>("Department not found.", HttpStatus.NOT_FOUND);
+        }
+
+        boolean isUpdated = false;
+        if (requestMap.containsKey("dept_name")) {
+            existingDepartment.setDept_name(requestMap.get("dept_name"));
+            isUpdated = true;
+        }
+        if (requestMap.containsKey("address")) {
+            existingDepartment.setAddress(requestMap.get("address"));
+            isUpdated = true;
+        }
+        if (requestMap.containsKey("phone_code")) {
+            existingDepartment.setPhone_code(requestMap.get("phone_code"));
+            isUpdated = true;
+        }
+
+        if (isUpdated) {
+            department_service.update_department(existingDepartment);
+            return new ResponseEntity<>("Department updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No changes provided for update.", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/delete/{dept_id}")
+    public ResponseEntity<?> delete_department(@PathVariable("dept_id") String dept_id) {
+        int ID;
+        try {
+            ID = Integer.parseInt(dept_id);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>("Invalid format for dept_id", HttpStatus.BAD_REQUEST);
+        }
+
+        Department department = department_service.get_department(ID);
+        if (department == null) {
+            return new ResponseEntity<>("Department not found.", HttpStatus.NOT_FOUND);
+        }
+
+        department_service.delete_department(ID);
+        return new ResponseEntity<>("Department deleted successfully", HttpStatus.OK);
+    }
+
+
 }

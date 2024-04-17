@@ -8,4 +8,8 @@ public interface Department_service {
 
     public Department get_department(int dept_id);
 
+    void update_department(Department department);
+
+    void delete_department(int dept_id);
+
 }
