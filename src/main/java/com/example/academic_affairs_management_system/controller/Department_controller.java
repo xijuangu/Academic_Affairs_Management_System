@@ -18,8 +18,6 @@ public class Department_controller {
 
     @Autowired
     private Department_service department_service;
-    @Autowired
-    private Department_mapper department_mapper;
 
     @PostMapping("/add")
     public ResponseEntity<?> add_department(@RequestBody Map<String, String> requestMap)
