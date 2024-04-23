@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -153,6 +154,11 @@ public class Student_controller {
 
         studentService.deleteStudent(ID);
         return new ResponseEntity<>("Student deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllStudent")
+    public ResponseEntity<List<Student>> getAllStudent() {
+        return new ResponseEntity<>(studentService.getAllStudent(), HttpStatus.OK);
     }
 
 }

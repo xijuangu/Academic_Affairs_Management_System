@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
+
 public interface Student_mapper {
 
     // 插入一个新的学生记录
@@ -28,7 +29,8 @@ public interface Student_mapper {
             + "<if test='native_place != null'>native_place = #{native_place},</if>"
             + "<if test='mobile_phone != null'>mobile_phone = #{mobile_phone},</if>"
             + "<if test='dept_id != null'>dept_id = #{dept_id},</if>"
-            + "<if test='status != null'>status = #{status}</if>"
+            + "<if test='status != null'>status = #{status},</if>"
+            + "<if test='password != null'>password = #{password}</if>"
             + " WHERE student_id = #{student_id}"
             + "</script>")
     void update_student(Student student);
@@ -38,6 +40,6 @@ public interface Student_mapper {
     void delete_student(int student_id);
 
     // 查询所有学生
-    @Select("SELECT * FROM student WHERE student_id = #{student_id}")
-    Student get_all_student(int student_id);
+    @Select("SELECT * FROM student")
+    List<Student> get_all_student();
 }

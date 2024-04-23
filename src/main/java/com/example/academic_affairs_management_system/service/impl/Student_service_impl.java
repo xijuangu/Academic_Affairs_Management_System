@@ -6,6 +6,8 @@ import com.example.academic_affairs_management_system.service.Student_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Student_service_impl implements Student_service {
 
@@ -31,4 +33,7 @@ public class Student_service_impl implements Student_service {
     public void deleteStudent(int studentId) {
         studentMapper.delete_student(studentId);
     }
+
+    @Override
+    public List<Student> getAllStudent(){ return studentMapper.get_all_student(); }
 }
