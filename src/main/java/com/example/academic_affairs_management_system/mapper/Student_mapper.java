@@ -11,8 +11,8 @@ import java.util.List;
 public interface Student_mapper {
 
     // 插入一个新的学生记录
-    @Insert("INSERT INTO student(student_id, name, sex, date_of_birth, native_place, mobile_phone, dept_id, status) " +
-            "VALUES(#{student_id}, #{name}, #{sex}, #{date_of_birth}, #{native_place}, #{mobile_phone}, #{dept_id}, #{status})")
+    @Insert("INSERT INTO student(student_id, name, sex, date_of_birth, native_place, mobile_phone, dept_id, status, password) " +
+            "VALUES(#{student_id}, #{name}, #{sex}, #{date_of_birth}, #{native_place}, #{mobile_phone}, #{dept_id}, #{status}, #{password})")
     void insert_student(Student student);
 
     // 根据学生ID查询学生信息

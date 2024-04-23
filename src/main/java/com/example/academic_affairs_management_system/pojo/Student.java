@@ -19,6 +19,7 @@ public class Student {
         private String mobile_phone;
         private int dept_id;
         private String status;
+        private String password;
 
     // Getters and Setters
     public int getStudentId() {
@@ -83,5 +84,13 @@ public class Student {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

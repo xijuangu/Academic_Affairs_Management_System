@@ -29,9 +29,10 @@ public class Student_controller {
         String mobile_phone = requestMap.get("mobile_phone");
         String dept_id = requestMap.get("dept_id");
         String status = requestMap.get("status");
+        String password = requestMap.get("password");
 
         if (student_id == null || name == null || sex == null || date_of_birth == null || native_place == null || mobile_phone == null || dept_id == null || status == null) {
-            return new ResponseEntity<>("Missing fields in request. Required fields: 'student_id', 'name', 'sex', 'date_of_birth', 'native_place', 'mobile_phone', 'dept_id', 'status'", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing fields in request. Required fields: 'student_id', 'name', 'sex', 'date_of_birth', 'native_place', 'mobile_phone', 'dept_id', 'status', 'password'", HttpStatus.BAD_REQUEST);
         }
 
         int ID;
@@ -50,6 +51,7 @@ public class Student_controller {
         student.setMobilePhone(mobile_phone);
         student.setDepartment(Integer.parseInt(dept_id));
         student.setStatus(status);
+        student.setPassword(password);
 
         studentService.insertStudent(student);
 
@@ -119,6 +121,10 @@ public class Student_controller {
         }
         if (requestMap.containsKey("status")) {
             existingStudent.setStatus(requestMap.get("status"));
+            isUpdated = true;
+        }
+        if (requestMap.containsKey("password")) {
+            existingStudent.setPassword(requestMap.get("password"));
             isUpdated = true;
         }
 
