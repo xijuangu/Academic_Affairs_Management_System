@@ -4,3 +4,6 @@ spring:
     url: jdbc:mysql://124.70.213.233/school
     username: test
     password: 123456
+
+server:
+  port: 8081
