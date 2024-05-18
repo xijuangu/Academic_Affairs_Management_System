@@ -1,6 +1,7 @@
 package com.example.academic_affairs_management_system.controller;
 
 
+import com.example.academic_affairs_management_system.pojo.Student;
 import com.example.academic_affairs_management_system.pojo.Teacher;
 import com.example.academic_affairs_management_system.service.Teacher_service;
 
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -151,6 +153,11 @@ public class Teacher_controller {
 
         teacherService.deleteTeacher(ID);
         return new ResponseEntity<>("Teacher deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllTeacher")
+    public ResponseEntity<List<Teacher>> getAllTeacher() {
+        return new ResponseEntity<>(teacherService.getAllTeacher(), HttpStatus.OK);
     }
 
 }

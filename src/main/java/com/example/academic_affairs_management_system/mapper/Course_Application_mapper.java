@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 public interface Course_Application_mapper {
 
     //插入一个新的课程申请记录
@@ -38,6 +40,6 @@ public interface Course_Application_mapper {
     void delete_course_application(int course_application_id);
 
     // 查询所有课程申请
-    @Select("SELECT * FROM course_application WHERE course_application_id = #{course_application_id}")
-    CourseApp get_all_course_application(int course_application_id);
+    @Select("SELECT * FROM course_application")
+    List<CourseApp> get_all_course_application();
 }

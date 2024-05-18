@@ -33,4 +33,9 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
     public void deleteCourseSelection(int studentId, int classId) {
         courseSelectionMapper.deleteCourseSelection(studentId, classId);
     }
+
+    @Override
+    public List<CourseSelection> getCourseSelectionByStaffId(int staff_id){
+        return courseSelectionMapper.selectCourseSelectionByStaffId(staff_id);
+    }
 }

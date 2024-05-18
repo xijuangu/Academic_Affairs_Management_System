@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 public interface Course_mapper {
     // 插入一个新的课程记录
     @Insert("INSERT INTO course(course_id, course_name, credit, credit_hours, dept_id, course_status) " +
@@ -33,6 +35,6 @@ public interface Course_mapper {
     void delete_course(String course_id);
 
     // 查询所有课程
-    @Select("SELECT * FROM course WHERE course_id = #{course_id}")
-    Course get_all_course(String course_id);
+    @Select("SELECT * FROM course")
+    List<Course> get_all_course();
 }

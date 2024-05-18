@@ -1,5 +1,6 @@
 package com.example.academic_affairs_management_system.controller;
 
+import com.example.academic_affairs_management_system.mapper.Course_Application_mapper;
 import com.example.academic_affairs_management_system.pojo.CourseApp;
 import com.example.academic_affairs_management_system.service.Course_Application_service;
 
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -17,6 +19,9 @@ public class Course_Application_controller {
 
     @Autowired
     private Course_Application_service courseApplicationService;
+
+    @Autowired
+    private Course_Application_mapper courseApplicationMapper;
 
     @PostMapping("/add")
     public ResponseEntity<?> addCourseApplication(@RequestBody Map<String, String> requestMap) {
@@ -31,19 +36,19 @@ public class Course_Application_controller {
         String examination_status = requestMap.get("examination_status");
         String apply_time = requestMap.get("apply_time");
 
-        if (course_application_id == null || staff_id == null || course_id == null || course_name == null || course_hour == null || course_credit == null || course_time == null || course_place == null || examination_status == null || apply_time == null) {
+        if (staff_id == null || course_id == null || course_name == null || course_hour == null || course_credit == null || course_time == null || course_place == null || examination_status == null || apply_time == null) {
             return new ResponseEntity<>("Missing fields in request. Required fields: 'course_application_id', 'staff_id', 'course_id', 'course_name', 'course_hour', 'course_credit', 'course_time', 'course_place', 'examination_status', 'apply_time'", HttpStatus.BAD_REQUEST);
         }
 
-        int ID;
-        try {
-            ID = Integer.parseInt(course_application_id);
-        } catch (NumberFormatException e) {
-            return new ResponseEntity<>("Invalid format for course_application_id", HttpStatus.BAD_REQUEST);
-        }
+//        int ID;
+//        try {
+//            ID = Integer.parseInt(course_application_id);
+//        } catch (NumberFormatException e) {
+//            return new ResponseEntity<>("Invalid format for course_application_id", HttpStatus.BAD_REQUEST);
+//        }
 
         CourseApp courseapp = new CourseApp();
-        courseapp.setCourseApplicationId(ID);
+        //courseapp.setCourseApplicationId(ID);
         courseapp.setStaffId(Integer.parseInt(staff_id));
         courseapp.setCourseId(course_id);
         courseapp.setCourseName(course_name);
@@ -154,5 +159,10 @@ public class Course_Application_controller {
 
         courseApplicationService.deleteCourseApplication(ID);
         return new ResponseEntity<>("Course_Application deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/getAll")
+    public List<CourseApp> getAllCourseApplications() {
+        return courseApplicationMapper.get_all_course_application();
     }
 }

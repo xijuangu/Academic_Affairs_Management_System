@@ -23,8 +23,9 @@ public class CourseSelectionController {
         String student_id = requestMap.get("student_id");
         String class_id = requestMap.get("class_id");
         String score = requestMap.get("score");
+        String className = requestMap.get("className");
 
-        if (student_id == null || class_id == null || score == null) {
+        if (student_id == null || class_id == null || score == null || className == null) {
             return new ResponseEntity<>("Missing fields in request. Required fields: 'student_id', 'class_id', 'score'", HttpStatus.BAD_REQUEST);
         }
 
@@ -41,6 +42,7 @@ public class CourseSelectionController {
         courseSelection.setStudentId(studentId);
         courseSelection.setClassId(classId);
         courseSelection.setScore(scoreValue);
+        courseSelection.setClassName(className);
 
         courseSelectionService.insertCourseSelection(courseSelection);
 
@@ -73,6 +75,8 @@ public class CourseSelectionController {
         if (studentIdStr == null || classIdStr == null) {
             return new ResponseEntity<>("Student ID and Class ID are required for update.", HttpStatus.BAD_REQUEST);
         }
+
+        
 
         int studentId, classId, score;
         try {
@@ -111,6 +115,11 @@ public class CourseSelectionController {
         // If exists, execute delete operation
         courseSelectionService.deleteCourseSelection(studentId, classId);
         return new ResponseEntity<>("Course selection deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/getByStaffId")
+    public ResponseEntity<List<CourseSelection>> getCourseSelectionByStaffId(@RequestParam("staff_id") int staff_id){
+        return new ResponseEntity<>(courseSelectionService.getCourseSelectionByStaffId(staff_id),HttpStatus.OK);
     }
 
 //    @GetMapping("/getAll")

@@ -37,6 +37,6 @@ public interface Teacher_mapper {
     void delete_teacher(int staff_id);
 
     // 查询所有教师
-    @Select("SELECT * FROM teacher WHERE staff_id = #{staff_id}")
-    Teacher get_all_teacher(int staff_id);
+    @Select("SELECT * FROM teacher")
+    List<Teacher> get_all_teacher();
 }

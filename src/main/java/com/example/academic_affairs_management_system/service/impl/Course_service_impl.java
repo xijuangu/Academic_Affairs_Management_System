@@ -6,6 +6,8 @@ import com.example.academic_affairs_management_system.service.Course_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Course_service_impl implements Course_service {
 
@@ -31,5 +33,10 @@ public class Course_service_impl implements Course_service {
     @Override
     public void deleteCourse(String courseId) {
         courseMapper.delete_course(courseId);
+    }
+
+    @Override
+    public List<Course> getAllCourses(){
+        return courseMapper.get_all_course();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -130,4 +131,12 @@ public class Course_controller {
         return new ResponseEntity<>("Course deleted successfully", HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Course>> getAllCourse() {
+        List<Course> courses = courseService.getAllCourses();
+        if (courses == null || courses.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
 }

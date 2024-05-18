@@ -14,4 +14,6 @@ public interface CourseSelectionService {
 
     public void deleteCourseSelection(int studentId, int classId);
 
+    public List<CourseSelection> getCourseSelectionByStaffId(int staff_id);
+
 }

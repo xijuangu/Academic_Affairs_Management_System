@@ -6,8 +6,19 @@ public class CourseSelection {
     private int class_id;
     private int score;
 
+    private String className;
+
 
     //getters and setters
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
     public int getStudentId() {
         return student_id;
     }

@@ -1,10 +1,13 @@
 package com.example.academic_affairs_management_system.service.impl;
 
 import com.example.academic_affairs_management_system.mapper.Teacher_mapper;
+import com.example.academic_affairs_management_system.pojo.Student;
 import com.example.academic_affairs_management_system.pojo.Teacher;
 import com.example.academic_affairs_management_system.service.Teacher_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class Teacher_service_impl implements Teacher_service {
@@ -27,4 +30,7 @@ public class Teacher_service_impl implements Teacher_service {
     public void deleteTeacher(int staffId) {
         teacherMapper.delete_teacher(staffId);
     }
+
+    @Override
+    public List<Teacher> getAllTeacher(){ return teacherMapper.get_all_teacher(); }
 }

@@ -7,8 +7,13 @@ public class Class {
     private int staff_id;
     private String class_time;
     private String place;
+    private int class_id;
 
     // getters and setters
+
+    public int getClass_id(){ return class_id; }
+
+    public void setClass_id(int class_id){ this.class_id = class_id; }
 
     public String getSemester() {
         return semester;

@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface CourseSelection_mapper {
 
-    @Insert("INSERT INTO course_selection(student_id, class_id, score) " +
-            "VALUES(#{student_id}, #{class_id}, #{score})")
+    @Insert("INSERT INTO course_selection(student_id, class_id, score, className) " +
+            "VALUES(#{student_id}, #{class_id}, #{score}, #{className})")
     void insertCourseSelection(CourseSelection courseSelection);
 
     @Select("<script>" +
@@ -34,5 +34,9 @@ public interface CourseSelection_mapper {
 
     @Delete("DELETE FROM course_selection WHERE student_id = #{student_id} AND class_id = #{class_id}")
     void deleteCourseSelection(int student_id, int class_id);
+
+    @Select("SELECT student_id, c.class_id, score, className FROM course_selection cs JOIN `class` c ON cs.class_id = c.class_id WHERE c.staff_id = #{staff_id}")
+    List<CourseSelection> selectCourseSelectionByStaffId(int staff_id);
+
 
 }
